@@ -4,66 +4,102 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>PlayMash — Juegos más concurridos en PlayStation</title>
+  <meta name="description" content="Comparación A/B + ranking Elo para construir un ranking de juegos más concurridos por perfil y contexto." />
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <header class="wrap">
-    <h1>🎮 PlayMash</h1>
-    <p class="sub">Comparación A/B para construir un ranking de juegos “más concurridos” (más jugados/descargados) por perfil y contexto.</p>
+  <header class="wrap header">
+    <div class="brand">
+      <div class="logo">PM</div>
+      <div>
+        <h1>PlayMash</h1>
+        <p class="sub">Comparación A/B → Ranking Elo de juegos “más concurridos” (más jugados / fácil encontrar partidas).</p>
+      </div>
+    </div>
+
+    <div class="meta">
+      <span class="pill" id="pillSeg">Perfil: —</span>
+      <span class="pill" id="pillCtx">Contexto: —</span>
+    </div>
   </header>
 
   <main class="wrap grid">
     <section class="card">
-      <h2>1) Configura</h2>
+      <h2 class="cardTitle">1) Configura</h2>
 
-      <label>Perfil (tipo de jugador)</label>
+      <label for="segmentSelect">Perfil (tipo de jugador)</label>
       <select id="segmentSelect"></select>
 
-      <label>Contexto (pregunta)</label>
+      <label for="contextSelect">Contexto (pregunta)</label>
       <select id="contextSelect"></select>
 
       <div class="row">
-        <button id="btnNewPair" class="ghost">🔁 Nuevo duelo</button>
-        <button id="btnReset" class="danger">🧹 Reiniciar</button>
+        <button id="btnNewPair" class="btn ghost" type="button">🔁 Nuevo duelo</button>
+        <button id="btnReset" class="btn danger" type="button">🧹 Reiniciar</button>
       </div>
 
-      <p class="hint">Tip: usa <b>Nuevo duelo</b> si se repite una comparación.</p>
+      <p class="hint">Tu ranking se guarda en este navegador (localStorage).</p>
+      <div class="sep"></div>
+
+      <h3 class="miniTitle">¿Qué hace el algoritmo?</h3>
+      <ul class="miniList">
+        <li>Te muestra 2 juegos (A vs B).</li>
+        <li>Tú eliges cuál está <b>más concurrido</b> según el contexto.</li>
+        <li>Actualiza el puntaje con <b>Elo</b> y produce un <b>Top 10</b>.</li>
+      </ul>
     </section>
 
     <section class="card">
-      <h2>2) Vota</h2>
+      <h2 class="cardTitle">2) Vota</h2>
       <p id="question" class="question">—</p>
 
       <div class="duel">
-        <button id="btnA" class="pick">
+        <button id="btnA" class="pick" type="button">
           <span class="tag">A</span>
           <span id="labelA" class="title">—</span>
         </button>
 
-        <button id="btnB" class="pick">
+        <button id="btnB" class="pick" type="button">
           <span class="tag">B</span>
           <span id="labelB" class="title">—</span>
         </button>
       </div>
 
-      <p class="hint">Cada voto actualiza el ranking (Elo) para este perfil y contexto.</p>
-
       <div class="row">
-        <button id="btnExport" class="ghost">⬇️ Exportar votos (CSV)</button>
-        <button id="btnShowTop" class="primary">🏁 Ver Top 10</button>
+        <button id="btnShowTop" class="btn primary" type="button">🏁 Ver Top 10</button>
+        <button id="btnExport" class="btn ghost" type="button">⬇️ Exportar votos (CSV)</button>
       </div>
+
+      <p class="hint">Cada voto alimenta el ranking: el algoritmo refleja <b>tus criterios</b>, no una “verdad universal”.</p>
     </section>
 
     <section class="card">
-      <h2>3) Ranking (Top 10)</h2>
+      <h2 class="cardTitle">3) Ranking (Top 10)</h2>
       <div id="topBox" class="topbox"></div>
-      <p class="hint">Ranking filtrado por el perfil y contexto seleccionados.</p>
+
+      <div class="sep"></div>
+
+      <h3 class="miniTitle">Actividad</h3>
+      <div class="stats">
+        <div class="stat">
+          <div class="statNum" id="statVotes">0</div>
+          <div class="statLab">votos</div>
+        </div>
+        <div class="stat">
+          <div class="statNum" id="statPairs">0</div>
+          <div class="statLab">duelos</div>
+        </div>
+        <div class="stat">
+          <div class="statNum" id="statMode">Elo</div>
+          <div class="statLab">método</div>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer class="wrap foot">
-    <small>PlayMash — algoritmo de comparación A/B + Elo (ranking por segmento y contexto).</small>
+    <small>PlayMash — A/B + Elo. Hecho para aprender cómo decisiones humanas construyen rankings.</small>
   </footer>
 
   <script src="app.js"></script>
