@@ -225,6 +225,7 @@ select:focus{
   .duel{ grid-template-columns: 1fr 1fr; }
 }
 
+/* ✅ CORRECCIÓN: texto blanco dentro de los botones A/B */
 .pick{
   width:100%;
   cursor:pointer;
@@ -235,6 +236,8 @@ select:focus{
   background:
     linear-gradient(180deg, rgba(10,15,31,.7), rgba(10,15,31,.55));
   transition: transform .08s ease, border-color .12s ease, box-shadow .12s ease;
+
+  color: var(--text); /* <-- clave */
 }
 
 .pick:hover{
@@ -243,7 +246,7 @@ select:focus{
   transform: translateY(-1px);
 }
 
-/* ✅ CAMBIO: letra A y B en blanco */
+/* ✅ A y B en blanco */
 .tag{
   display:inline-grid;
   place-items:center;
@@ -256,11 +259,14 @@ select:focus{
   background: linear-gradient(135deg, rgba(44,245,167,.95), rgba(45,212,255,.9));
 }
 
+/* ✅ Nombre del juego en blanco */
 .title{
   vertical-align:middle;
   font-size: 14px;
   font-weight: 800;
   letter-spacing:.2px;
+
+  color: var(--text); /* <-- asegura blanco */
 }
 
 /* Ranking */
@@ -356,6 +362,10 @@ select:focus{
 }
 
 .foot{
+  padding-bottom: 26px;
+  color: var(--muted);
+}
+
   padding-bottom: 26px;
   color: var(--muted);
 }
