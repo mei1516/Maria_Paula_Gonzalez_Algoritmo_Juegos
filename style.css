@@ -243,6 +243,7 @@ select:focus{
   transform: translateY(-1px);
 }
 
+/* ✅ CAMBIO: letra A y B en blanco */
 .tag{
   display:inline-grid;
   place-items:center;
@@ -251,7 +252,7 @@ select:focus{
   border-radius: 10px;
   margin-right: 10px;
   font-weight: 900;
-  color:#081021;
+  color:#ffffff; /* <-- blanco */
   background: linear-gradient(135deg, rgba(44,245,167,.95), rgba(45,212,255,.9));
 }
 
@@ -359,6 +360,3 @@ select:focus{
   color: var(--muted);
 }
 
-.hint{ color:var(--muted); margin:10px 0 0; }
-
-.foot{ color:var(--muted); padding-bottom:28px; }
